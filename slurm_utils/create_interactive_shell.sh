@@ -1,1 +1,1 @@
-salloc --gres=gpu:a100:2 --time=2:00:00
+salloc --gres=gpu:a100:1 --time=2:00:00
