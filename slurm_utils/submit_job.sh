@@ -8,9 +8,12 @@
 
 # ^^^ All of these are just defaults; override at submit time, e.g.:
 # sbatch --time=2:00:00 --cpus-per-task=8 --gres=gpu:a100:1 submit_job.sh /working_directory conda_env_name -- python train.py --epochs 10
+# sbatch --time=7:00:00 --cpus-per-task=8 --gres=gpu:h100:1 submit_job.sh ~/projects/superdec superdec_p3_11 -- ./scripts/train_vanilla.sh
 # sbatch --job-name=eval_something --time=5:00:00 --gres=gpu:a100:1 submit_job.sh "$(pwd)" pytorch-latest -- scripts/eval.sh
 
 set -euo pipefail
+
+# source ~/.bash_profile
 
 WORKDIR="$1"
 CONDA_ENV="$2"
