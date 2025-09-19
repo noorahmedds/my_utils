@@ -1,0 +1,1 @@
+jid=$(squeue --me --noheader --sort=-V -o "%i" | head -n1)
