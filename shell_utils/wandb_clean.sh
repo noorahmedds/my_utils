@@ -1,0 +1,1 @@
+wandb sync --clean --clean-old-hours 24
