@@ -17,7 +17,7 @@
 
 # Execute with shell
 cd ~/projects/superdec
-apptainer build --sandbox pytorch_env docker://nvidia/cuda:13.0.1-cudnn-devel-ubuntu24.04
+apptainer build --sandbox $TMPDIR/pytorch_env docker://nvidia/cuda:13.0.1-cudnn-devel-ubuntu24.04
 apptainer shell --nv --fakeroot --writable --no-home $TMPDIR/pytorch_env/
 
 # Inside the apptainer shell, run the following commands
