@@ -46,7 +46,6 @@ apptainer build $ENV_DIR/pytorch.sif $TMPDIR/pytorch_env/
 # apptainer build $ENV_DIR/pytorch.sif $TMPDIR/pytorch_env/   # Updated
 # Follow this by building the .sif file again
 
-
 ### Run files using
 # [Option #1] Non-interactive execution of the script with the following
 apptainer exec --nv $ENV_DIR/pytorch.sif scripts/train_guide.sh

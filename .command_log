@@ -40,3 +40,4 @@
 2025-11-29 17:59:24 [137] salloc --gres=gpu:h100:1 --time=4:00:00
 2025-12-02 10:17:26 [000] salloc --gres=gpu:h100:1 --time=4:00:00
 2026-01-02 16:51:15 [000] ./scripts/align.sh --append_arg="evaluator.test_only=True" --append_arg="evaluator.random_baseline=True"
+2026-01-29 13:02:20 [000] sbatch --time=24:00:00 --gres=gpu:h100:1 --partition=h100 --error="slurm_logs/%x_%j.err" --out="slurm_logs/%x_%j.out" ./scripts/apptainer_wrapper.sh --env_name="pytorch3d_torch210_cu121.sif" ./scripts/align.sh --append_args="align.segmentation_type=superdec|loss.ot_loss.remove_redundant_tag=True|loss.ot_loss.reach=0.5|loss.ot_loss.blur_range=[0.1,0.05]|align.fuse_dino_features=True" --user_postfix=setting-3.2+reach0.5+blurschedule+v1.1+fuseddino
