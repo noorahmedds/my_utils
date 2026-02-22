@@ -2,8 +2,19 @@ import torch
 x = torch.rand(10,10)
 ixs = torch.randint(10, (2,10))
 
+""" Torch loading checkpoint """
+checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
 
-# Torch Standard Patterns
+""" Torch Standard Patterns """
+# ---Switching out a forward function----
+# This may be critical when you are using somebody else code entirely and do not want to 
+# mess with their code directly. For example your input does not match expected input
+import types
+old_forward = model.forward
+def wrapped_forward(self, pc):
+    colors = torch.zeros_like(pc)  # Extra functionality
+    return old_forward(pc, colors)  # Call to the original forward function
+model.forward = types.MethodType(wrapped_forward, model)
 
 # ---Mask Filling. Filling a tensor with a certain value given a mask---
 # Here is the mask
