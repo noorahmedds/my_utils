@@ -1,3 +1,5 @@
+# SCRIPT DESCRIPTION: This script is used to install the dependencies for 3D Libraries that require CUDA extensions and custom cuda kernels"
+
 # Remember that your nvcc version (System CUDA ToolKit) is only important when building from source
 # If you are simply installing pytorch using pip. The pytorch wheel should come prepackaged with a cuda runtime.
 # This version torch.version.cuda should remain compatible with other downloaded "CUDA extensions" (e.g. pytorch3d, torch-scatter) and so on
@@ -28,6 +30,16 @@ pip install open3d transformers==4.40.2 sentence-transformers==2.7.0 geomloss
 apt install -y libglib2.0-0
 pip install opencv-python --no-deps # not --no-deps forces pip not to resolve updates which could update numpy
 
+# Installing pointnet2_ops and KNN_CUDA. Note for these CUDA-runtime that ships with pytorch2.1.0 == 11.8 works only
+pip install "git+https://github.com/erikwijmans/Pointnet2_PyTorch.git#egg=pointnet2_ops&subdirectory=pointnet2_ops_lib" --no-build-isolation
+pip install --upgrade https://github.com/unlimblue/KNN_CUDA/releases/download/0.2/KNN_CUDA-0.2-py3-none-any.whl
+
+# Installing MinkowskiEngine
+pip install "git+https://github.com/NVIDIA/MinkowskiEngine.git#egg=MinkowskiEngine&subdirectory=MinkowskiEngine"
+
+# Installing point ops
+TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0" pip install "git+https://github.com/Silverster98/pointops" -v --no-build-isolation
+
 # Other build related error
 # pip install wheel # in case running into bdist_wheel error during compilation
 # --no-build-isolation if torch not installed error
@@ -37,9 +49,11 @@ pip install opencv-python --no-deps # not --no-deps forces pip not to resolve up
 # For me this was solved by reverting to 11.8 CUDA
 
 
-# if you run into the error [nvcc fatal : Unsupported gpu architecture 'compute_90']. 
+# if you run into the error [nvcc fatal : Unsupported gpu architecture 'compute_90'|'sm_37']. 
 # This is usually referring to your cuda toolkit not being compatible with the architecture of your GPU
 # A cuda-toolkit (nvcc) knows by default some architectures, for example (nvcc knows upuntil sm_86(or 8.6), sm_50->sm_87)
 # when compiling for a more recent sm_90 compute capability your nvcc may fail raising the nvcc fatal error. 
 # to fix this you need to explicitly define the torch cuda arch list for nvcc to use when compiling cuda extensions
-export TORCH_CUDA_ARCH_LIST="8.6;8.0;7.5" #os.environ['TORCH_CUDA_ARCH_LIST'] = "8.6;8.0;7.5"
+export TORCH_CUDA_ARCH_LIST="8.7;8.6;8.0;7.5" #os.environ['TORCH_CUDA_ARCH_LIST'] = "8.6;8.0;7.5"
+
+

@@ -18,10 +18,11 @@
 # Execute with shell
 cd ~/projects/superdec
 apptainer build --sandbox $TMPDIR/pytorch_env docker://nvidia/cuda:13.0.1-cudnn-devel-ubuntu24.04
+# apptainer build --sandbox $TMPDIR/pytorch_env docker://nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 apptainer shell --nv --fakeroot --writable --no-home $TMPDIR/pytorch_env/
 
 # Inside the apptainer shell, run the following commands
-apt-get update && apt-get install -y python3 python3-pip python3-venv git unzip
+apt-get update && apt-get install -y python3 python3-pip python3-venv git unzip zstd
 apt-get clean
 python3 -m venv /opt/venv
 source /opt/venv/bin/activate
