@@ -67,3 +67,5 @@ intersection = (gtl_mask & highest_overlapping_pred_mask).sum().float()
 union = (gtl_mask | highest_overlapping_pred_mask).sum().float()
 
 iou = intersection/union
+
+# ----- More testing ------
