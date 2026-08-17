@@ -55,5 +55,3 @@ TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0" pip install "git+https://github.com/Silve
 # when compiling for a more recent sm_90 compute capability your nvcc may fail raising the nvcc fatal error. 
 # to fix this you need to explicitly define the torch cuda arch list for nvcc to use when compiling cuda extensions
 export TORCH_CUDA_ARCH_LIST="8.7;8.6;8.0;7.5" #os.environ['TORCH_CUDA_ARCH_LIST'] = "8.6;8.0;7.5"
-
-

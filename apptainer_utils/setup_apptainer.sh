@@ -1,3 +1,6 @@
+# For updating an existing .sif (pip install + rebuild), use:
+#   ./apptainer_utils/update_apptainer_env.sh --help
+
 # apptainer build --sandbox superdec_container docker://pytorch/pytorch
 
 # apptainer shell --writable superdec_container
